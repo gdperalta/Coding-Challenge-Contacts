@@ -1,4 +1,11 @@
 {
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {}
+  },
   "devDependencies": {
     "jest": "^28.1.0"
   }
