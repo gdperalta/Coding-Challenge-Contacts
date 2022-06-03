@@ -1,3 +1,11 @@
+/*
+Tests the following:
+- Checks if the details per contact are complete
+- Sorted contacts by last name, then first name, alphabetically
+- Ensures that only the highest ranker among the contacts receives the VIP option
+- Checks that no VIP option is offered if there are 2 or more highest ranked contact
+*/
+
 import { CONTACTS } from '../../utils/data/Contacts';
 import ContactOptions from '../ContactOptions';
 
@@ -17,7 +25,23 @@ describe('Class: ContactOptions', () => {
 			);
 		});
 
-		describe('sorts contacts alphabetically', () => {
+		describe('sorts contacts', () => {
+			test('in alphabetical order', () => {
+				let sortedAlphabetically = contacts.every((contact, i) => {
+					if (i + 1 !== contacts.length) {
+						if (contact.lastName === contacts[i + 1].lastName) {
+							return contact.firstName < contacts[i + 1].firstName;
+						} else {
+							return contact.lastName < contacts[i + 1].lastName;
+						}
+					} else {
+						return true;
+					}
+				});
+
+				expect(sortedAlphabetically).toBe(true);
+			});
+
 			test('first contact', () => {
 				expect(contacts[0]).toEqual(
 					expect.objectContaining({
@@ -59,7 +83,11 @@ describe('Class: ContactOptions', () => {
 		describe('Introductions offered', () => {
 			test('only the highest ranker gets VIP offer', () => {
 				let highestRanker = contacts[6];
-				let freeOfferContacts = contacts.map((contact, i) => i != 6);
+				let freeOfferContacts = contacts.map((contact, i) => {
+					if (i !== 6) {
+						return contact;
+					}
+				});
 				expect(highestRanker).toEqual(
 					expect.objectContaining({
 						firstName: 'BA',
@@ -69,9 +97,9 @@ describe('Class: ContactOptions', () => {
 				);
 
 				expect(freeOfferContacts).toEqual(
-					expect.arrayContaining([
-						expect.not.objectContaining({
-							contactOptions: 'VIP',
+					expect.not.arrayContaining([
+						expect.objectContaining({
+							contactOption: 'VIP',
 						}),
 					])
 				);
@@ -81,7 +109,7 @@ describe('Class: ContactOptions', () => {
 				let newContacts = [
 					{
 						name: 'BA Lewis',
-						email: 'ba.lewis@outlook.com',
+						email: 'ba.lewis@x.com',
 						introsOffered: { free: 6, vip: 0 },
 					},
 					{
@@ -97,30 +125,13 @@ describe('Class: ContactOptions', () => {
 				];
 
 				let equalContacts = new ContactOptions(newContacts);
-
 				expect(equalContacts.contacts).toEqual(
-					expect.arrayContaining([
-						expect.not.objectContaining({
-							contactOptions: 'VIP',
+					expect.not.arrayContaining([
+						expect.objectContaining({
+							contactOption: 'VIP',
 						}),
 					])
 				);
-			});
-		});
-
-		describe('Unit tests', () => {
-			describe('findNoVipOffers', () => {
-				test('returns array of contacts with no vip offers', () => {
-					expect(contacts).toEqual(
-						expect.arrayContaining([
-							expect.not.objectContaining({
-								introsOffered: {
-									vip: 0,
-								},
-							}),
-						])
-					);
-				});
 			});
 		});
 	});
