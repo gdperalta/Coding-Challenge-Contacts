@@ -1,3 +1,7 @@
+/*
+Tests the details of the created Class, Ranking, and checking of email if personal
+*/
+
 import Contact from '../Contact';
 
 let John = new Contact({

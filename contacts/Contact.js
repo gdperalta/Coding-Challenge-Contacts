@@ -1,5 +1,15 @@
 /*
 Used by ContactOptions class to create a new Contact Class
+Returns the following value:
+{
+	name: string,
+	firstName: string,
+	lastName: string,
+	email: string,
+	introsOffered: {free: integer, vip: integer},
+	ranking: integer,
+	contactOption: string
+}
 */
 import { personalEmails } from '../utils/data/personalEmails.js';
 

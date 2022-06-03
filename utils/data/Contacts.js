@@ -1,3 +1,5 @@
+// Data of contacts used for the challenge
+
 export const CONTACTS = [
 	{
 		name: 'John Doe',
