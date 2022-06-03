@@ -1,5 +1,9 @@
+/*
+Returns an array of a class instance of Contact sorted alphabetically
+Offers a VIP introduction to the highest ranker among the contacts given
+*/
+
 import Contact from './Contact.js';
-import { CONTACTS } from '../utils/data/Contacts.js';
 class ContactOptions {
 	constructor(contacts) {
 		this.contacts = this.handleContacts(contacts);
@@ -11,16 +15,6 @@ class ContactOptions {
 		this.assignVip(sortedRanks[0], sortedRanks[1]);
 
 		return this.sortByName(newContacts);
-	}
-
-	sortByName(contacts) {
-		return contacts.sort((contactA, contactB) => {
-			if (contactA.lastName === contactB.lastName) {
-				return this.compare(contactA.firstName, contactB.firstName);
-			} else {
-				return this.compare(contactA.lastName, contactB.lastName);
-			}
-		});
 	}
 
 	createContact(contact) {
@@ -42,6 +36,20 @@ class ContactOptions {
 		}
 	}
 
+	sortByName(contacts) {
+		return contacts.sort((contactA, contactB) => {
+			return this.compareName(contactA, contactB);
+		});
+	}
+
+	compareName(contactA, contactB) {
+		if (contactA.lastName === contactB.lastName) {
+			return this.compare(contactA.firstName, contactB.firstName);
+		} else {
+			return this.compare(contactA.lastName, contactB.lastName);
+		}
+	}
+
 	findNoVIPOffers(contacts) {
 		return contacts.filter((contact) => contact.introsOffered.vip === 0);
 	}
@@ -52,6 +60,3 @@ class ContactOptions {
 }
 
 export default ContactOptions;
-
-let x = new ContactOptions(CONTACTS);
-console.log(x.contacts);
