@@ -1,46 +1,49 @@
 /*
 Used by ContactOptions class to create a new Contact Class
 */
-import {personalEmails} from '../utils/data/personalEmails'
+import { personalEmails } from '../utils/data/personalEmails.js';
 
 class Contact {
-    constructor(contact) {
-        const {name, email, introsOffered} = contact
-        this.name = name
-        this.email = email
+	constructor(contact) {
+		const { name, email, introsOffered } = contact;
+		this.name = name;
+		this.firstName = this.firstName(name);
+		this.lastName = this.lastName(name);
+		this.email = email;
+		this.introsOffered = introsOffered;
+		this.ranking = this.computeRanking();
+		this.contactOption = 'free';
+	}
 
-        const {free, vip} = introsOffered
-        this.freeIntros = free
-        this.vipIntros = vip
-        this.baseRanking = 3
-    }
+	firstName(name) {
+		return name.split(' ')[0];
+	}
 
-    firstName(){
-        return this.name.split(' ')[0]
-    }
+	lastName(name) {
+		let nameArray = name.split(' ');
 
-    lastName(){
-        return this.name.split(' ')[1]
-    }
+		return nameArray[nameArray.length - 1];
+	}
 
-    /*
+	/*
     Checks if email is personal
     Returns true if contact used personal email, else fall will be returned
     */
-    isPersonalEmail(){
-        let emailDomain = this.email.split('@')[1]
-        return personalEmails.includes(emailDomain)         
-    }
+	isPersonalEmail() {
+		let emailDomain = this.email.split('@')[1];
+		return personalEmails.includes(emailDomain);
+	}
 
-    emailRank(){
-        return this.isPersonalEmail() ? 0 : 2
-    }
+	emailRank() {
+		return this.isPersonalEmail() ? 0 : 2;
+	}
 
-    ranking(){
-        const ranking = this.baseRanking + this.freeIntros + this.emailRank()
+	computeRanking() {
+		const baseRanking = 3;
+		const ranking = baseRanking + this.introsOffered.free + this.emailRank();
 
-        return ranking
-    }
+		return ranking;
+	}
 }
 
 export default Contact;

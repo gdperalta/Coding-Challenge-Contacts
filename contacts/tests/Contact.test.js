@@ -1,55 +1,59 @@
-import Contact from '../Contact'
+import Contact from '../Contact';
 
 let John = new Contact({
-    name: 'John Doe',
-    email: 'john@company.app',
-    introsOffered: {free: 5, vip: 0}
-})
+	name: 'John Wick Doe',
+	email: 'john@company.app',
+	introsOffered: { free: 5, vip: 0 },
+});
 
 describe('Class Contact', () => {
-    describe('Contact details', () => {
-        test('first name', () => {
-            expect(John.firstName()).toBe('John')
-        })
-        
-        test('last name', () => {
-            expect(John.lastName()).toBe('Doe')
-        })
-        
-        test('email', () => {
-            expect(John.email).toBe('john@company.app')
-        })
-        
-        test('freeIntros', () => {
-            expect(John.freeIntros).toBe(5)
-        })
-        
-        test('vipIntros', () => {
-            expect(John.vipIntros).toBe(0)
-        })
-    })
+	describe('Contact details', () => {
+		test('first name', () => {
+			expect(John.firstName).toBe('John');
+		});
 
-    test('isPersonalEmail', () => {
-        expect(John.isPersonalEmail()).toBe(false)
-    })
+		test('last name', () => {
+			expect(John.lastName).toBe('Doe');
+		});
 
-    describe('Ranking', () => {
-        test('baseRank', () => {
-            expect(John.baseRanking).toBe(3)
-        })
+		test('email', () => {
+			expect(John.email).toBe('john@company.app');
+		});
 
-        test('emailRank', () => {
-            expect(John.emailRank()).toBe(2)
-        })
+		test('introsOffered', () => {
+			expect(John.introsOffered).toEqual(
+				expect.objectContaining({
+					free: 5,
+					vip: 0,
+				})
+			);
+		});
 
-        test('ranking', () => {
-            expect(John.ranking()).toBe(10)
-        })
+		test('contact option', () => {
+			expect(John.contactOption).toBe('free');
+		});
+	});
 
-        test('used personal email', () => {
-            John.email = 'john@gmail.com'
-            expect(John.ranking()).toBe(8)
-        })
-    })
-})
+	test('isPersonalEmail', () => {
+		expect(John.isPersonalEmail()).toBe(false);
+	});
 
+	describe('Ranking', () => {
+		test('emailRank', () => {
+			expect(John.emailRank()).toBe(2);
+		});
+
+		test('ranking', () => {
+			expect(John.ranking).toBe(10);
+		});
+
+		test('personal email', () => {
+			let Peter = new Contact({
+				name: 'Peter Quill',
+				email: 'john@gmail.com',
+				introsOffered: { free: 5, vip: 0 },
+			});
+			expect(Peter.ranking).toBe(8);
+		});
+	});
+});
