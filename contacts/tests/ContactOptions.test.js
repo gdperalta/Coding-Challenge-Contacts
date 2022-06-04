@@ -73,6 +73,7 @@ describe('Class: ContactOptions', () => {
 
 		describe('Introductions offered', () => {
 			test('only the highest ranker gets VIP offer', () => {
+				// Contact with highest ranking and no VIP offer
 				let highestRanker = contacts[6];
 				let freeOfferContacts = contacts.map((contact, i) => {
 					if (i !== 6) {
