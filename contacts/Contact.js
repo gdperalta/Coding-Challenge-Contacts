@@ -43,9 +43,9 @@ class Contact {
 	}
 
 	/*
-    Checks if email is personal
-    Returns true if contact used personal email, else fall will be returned
-    */
+	 * Checks if email is personal
+	 * Returns true if contact used personal email, else fall will be returned
+	 */
 	isPersonalEmail() {
 		let emailDomain = this.email.split('@')[1];
 		return personalEmails.includes(emailDomain);
@@ -55,6 +55,9 @@ class Contact {
 		return this.isPersonalEmail() ? 0 : 2;
 	}
 
+	/**
+	 * ranking = baseRanking + number of free intros + email rank
+	 */
 	computeRanking() {
 		const baseRanking = 3;
 		const ranking = baseRanking + this.introsOffered.free + this.emailRank();
