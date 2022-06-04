@@ -74,7 +74,8 @@ Run the program with a sample contact list in the app
 		name: 'Penny Smith',
 		email: 'penny@smith.com',
 		introsOffered: { free: 2, vip: 0 },
-	}
+	},
+];
 ```
 
 Run `node index.js` to execute the program
