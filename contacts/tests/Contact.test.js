@@ -50,10 +50,6 @@ describe('Class: Contact', () => {
 		});
 	});
 
-	test('isPersonalEmail', () => {
-		expect(John.isPersonalEmail()).toBe(false);
-	});
-
 	describe('Ranking', () => {
 		test('emailRank', () => {
 			expect(John.emailRank()).toBe(2);
@@ -66,9 +62,10 @@ describe('Class: Contact', () => {
 		test('personal email', () => {
 			let Peter = new Contact({
 				name: 'Peter Quill',
-				email: 'john@gmail.com',
+				email: 'peter@gmail.com',
 				introsOffered: { free: 5, vip: 0 },
 			});
+			expect(Peter.emailRank()).toBe(0);
 			expect(Peter.ranking).toBe(8);
 		});
 	});
