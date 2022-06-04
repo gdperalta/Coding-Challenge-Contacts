@@ -7,6 +7,7 @@ Tests the following:
 */
 
 import { CONTACTS } from '../../utils/data/Contacts';
+import { isSortedAlphabetically } from '../../utils/helpers/isSortedAlphabetically';
 import ContactOptions from '../ContactOptions';
 
 describe('Class: ContactOptions', () => {
@@ -27,17 +28,7 @@ describe('Class: ContactOptions', () => {
 
 		describe('sorts contacts', () => {
 			test('in alphabetical order', () => {
-				let sortedAlphabetically = contacts.every((contact, i) => {
-					if (i + 1 !== contacts.length) {
-						if (contact.lastName === contacts[i + 1].lastName) {
-							return contact.firstName < contacts[i + 1].firstName;
-						} else {
-							return contact.lastName < contacts[i + 1].lastName;
-						}
-					} else {
-						return true;
-					}
-				});
+				let sortedAlphabetically = isSortedAlphabetically(contacts);
 
 				expect(sortedAlphabetically).toBe(true);
 			});
@@ -106,7 +97,7 @@ describe('Class: ContactOptions', () => {
 			});
 
 			test('no VIP if there are 2 or more highest rankers', () => {
-				let newContacts = [
+				const newContacts = [
 					{
 						name: 'BA Lewis',
 						email: 'ba.lewis@x.com',
@@ -123,8 +114,8 @@ describe('Class: ContactOptions', () => {
 						introsOffered: { free: 4, vip: 0 },
 					},
 				];
+				const equalContacts = new ContactOptions(newContacts);
 
-				let equalContacts = new ContactOptions(newContacts);
 				expect(equalContacts.contacts).toEqual(
 					expect.not.arrayContaining([
 						expect.objectContaining({
