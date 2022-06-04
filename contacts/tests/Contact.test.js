@@ -4,14 +4,26 @@ Tests the details of the created Class, Ranking, and checking of email if person
 
 import Contact from '../Contact';
 
-let John = new Contact({
-	name: 'John Wick Doe',
-	email: 'john@company.app',
-	introsOffered: { free: 5, vip: 0 },
-});
-
-describe('Class Contact', () => {
+describe('Class: Contact', () => {
+	let John = new Contact({
+		name: 'John Wick Doe',
+		email: 'john@company.app',
+		introsOffered: { free: 5, vip: 0 },
+	});
 	describe('Contact details', () => {
+		test('returns correct contact details', () => {
+			expect(John).toEqual(
+				expect.objectContaining({
+					name: 'John Wick Doe',
+					firstName: 'John',
+					lastName: 'Doe',
+					email: 'john@company.app',
+					ranking: 10,
+					contactOption: 'free',
+				})
+			);
+		});
+
 		test('first name', () => {
 			expect(John.firstName).toBe('John');
 		});
@@ -47,7 +59,7 @@ describe('Class Contact', () => {
 			expect(John.emailRank()).toBe(2);
 		});
 
-		test('ranking', () => {
+		test('not personal email', () => {
 			expect(John.ranking).toBe(10);
 		});
 
