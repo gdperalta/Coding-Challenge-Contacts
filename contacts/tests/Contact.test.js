@@ -51,11 +51,8 @@ describe('Class: Contact', () => {
 	});
 
 	describe('Ranking', () => {
-		test('emailRank', () => {
-			expect(John.emailRank()).toBe(2);
-		});
-
 		test('not personal email', () => {
+			expect(John.emailRank()).toBe(2);
 			expect(John.ranking).toBe(10);
 		});
 
