@@ -72,7 +72,7 @@ describe('Class: ContactOptions', () => {
 		});
 
 		describe('Introductions offered', () => {
-			test('only the highest ranker gets VIP offer', () => {
+			test('only the highest ranker with no VIP offered gets VIP offer', () => {
 				// Contact with highest ranking and no VIP offer
 				let highestRanker = contacts[6];
 				let freeOfferContacts = contacts.map((contact, i) => {
@@ -87,6 +87,7 @@ describe('Class: ContactOptions', () => {
 						contactOption: 'VIP',
 					})
 				);
+				expect(highestRanker.introsOffered.vip).toBe(0);
 
 				expect(freeOfferContacts).toEqual(
 					expect.not.arrayContaining([
