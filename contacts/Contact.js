@@ -1,20 +1,23 @@
 /**
  *Used by ContactOptions class to create a new Contact Class
- @param {
-			name: string,
-			email: string,
-			introsOffered: { free: integer, vip: integer },
-		} contact
- *@returns {
+ * @param { Object } contact
+ * @param { string } contact.name
+ * @param { string } contact.email
+ * @param { Object } contact.introsOffered
+ * @param { string } contact.introsOffered.free
+ * @param { string } contact.introsOffered.vip
+ * @returns {Object} - Returns the following object:
+ * {
  *	name: string,
  *	firstName: string,
  *	lastName: string,
  *	email: string,
- *	introsOffered: {free: integer, vip: integer},
- *	ranking: integer,
+ *	introsOffered: {free: number, vip: number},
+ *	ranking: number,
  *	contactOption: string
- *}
+ * }
  */
+
 import { personalEmails } from '../utils/data/personalEmails.js';
 
 class Contact {
