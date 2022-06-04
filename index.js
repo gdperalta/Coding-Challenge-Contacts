@@ -1,14 +1,12 @@
 /*
 Runs the code 
 Creates an instance of class ContactOptions using the data CONTACTS from Contacts.js
-returns JSON format of created instance
+Displays object result in JSON format in the terminal
 */
 
 import ContactOptions from './contacts/ContactOptions.js';
 import { CONTACTS } from './utils/data/Contacts.js';
 
-function Index(contacts = CONTACTS) {
-	return new ContactOptions(contacts);
-}
+const contactOptions = new ContactOptions(CONTACTS);
 
-console.log(JSON.stringify(Index(), null, 2));
+console.log(JSON.stringify(contactOptions, null, 2));
