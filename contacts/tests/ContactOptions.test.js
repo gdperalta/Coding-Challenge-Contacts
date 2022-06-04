@@ -36,6 +36,7 @@ describe('Class: ContactOptions', () => {
 			test('first contact', () => {
 				expect(contacts[0]).toEqual(
 					expect.objectContaining({
+						name: 'Jenny Baggins',
 						firstName: 'Jenny',
 						lastName: 'Baggins',
 					})
@@ -45,6 +46,7 @@ describe('Class: ContactOptions', () => {
 			test('fourth contact', () => {
 				expect(contacts[3]).toEqual(
 					expect.objectContaining({
+						name: 'Billy Ray Jenkins',
 						firstName: 'Billy',
 						lastName: 'Jenkins',
 					})
@@ -54,6 +56,7 @@ describe('Class: ContactOptions', () => {
 			test('fifth contact', () => {
 				expect(contacts[4]).toEqual(
 					expect.objectContaining({
+						name: 'Adam Johnson',
 						firstName: 'Adam',
 						lastName: 'Johnson',
 					})
