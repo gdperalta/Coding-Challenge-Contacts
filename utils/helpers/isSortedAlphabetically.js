@@ -2,7 +2,7 @@
  * Accepts array of objects with a firstName and lastName key
  * @param { Object[] } array - The array of objects to be check
  * @param { string } array[].firstName - The first name of the object
- * @param { string } array[].laststName - The last name of the object
+ * @param { string } array[].lastName - The last name of the object
  * @returns { boolean } - True if sorted. False if not
  */
 export const isSortedAlphabetically = (array) => {
