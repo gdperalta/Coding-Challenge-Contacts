@@ -7,8 +7,8 @@ returns JSON format of created instance
 import ContactOptions from './contacts/ContactOptions.js';
 import { CONTACTS } from './utils/data/Contacts.js';
 
-function Index() {
-	return new ContactOptions(CONTACTS);
+function Index(contacts = CONTACTS) {
+	return new ContactOptions(contacts);
 }
 
 console.log(JSON.stringify(Index(), null, 2));
