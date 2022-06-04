@@ -38,12 +38,22 @@ class ContactOptions {
 		}
 	}
 
+	/**
+	 * @param { Object[] } contacts
+	 * @returns { Object [] } - Returns sorted contacts
+	 */
 	sortByName(contacts) {
 		return contacts.sort((contactA, contactB) => {
 			return this.compareName(contactA, contactB);
 		});
 	}
 
+	/**
+	 *
+	 * @param { Object } contactA
+	 * @param { Object } contactB
+	 * @returns { number } - Returns 1 or -1 depending on which value is greater
+	 */
 	compareName(contactA, contactB) {
 		if (contactA.lastName === contactB.lastName) {
 			return compare(contactA.firstName, contactB.firstName);
